@@ -13,7 +13,8 @@ public func configure(_ app: Application) async throws {
           port: 54322,
           username: "postgres",
           password: "vertxbench",
-          database: "vertxbench"
+          database: "vertxbench",
+          maxConnectionsPerEventLoop:2
       ), as: .psql)
     
     app.http.server.configuration.port = 3020
