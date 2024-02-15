@@ -30,14 +30,8 @@ struct SimpleResult: Codable {
 
 struct HTTPLoggingMiddleware: AsyncMiddleware {
     func respond(to request: Request, chainingTo next: AsyncResponder) async throws -> Response {
-        // 记录请求开始的时间
-        let start = Date()
-
         // 继续处理请求
         let response = try await next.respond(to: request)
-
-        // 获取请求结束的时间
-//        let duration = Date().timeIntervalSince(start)
 
         // 提取请求信息
         let method = request.method.string

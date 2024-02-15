@@ -8,14 +8,7 @@ public func configure(_ app: Application) async throws {
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
     app.middleware.use(HTTPLoggingMiddleware())
     
-    app.databases.use(.postgres(
-          hostname: "localhost",
-          port: 54322,
-          username: "postgres",
-          password: "vertxbench",
-          database: "vertxbench",
-          maxConnectionsPerEventLoop:2
-      ), as: .psql)
+    app.databases.use(.postgres(configuration: .init(hostname: "127.0.0.1", port: 54322, username: "postgres", password: "vertxbench",database: "vertxbench", tls: .disable) ,maxConnectionsPerEventLoop: 1), as: .psql)
     
     app.http.server.configuration.port = 3020
     
